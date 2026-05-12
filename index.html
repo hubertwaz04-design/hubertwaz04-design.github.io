@@ -1,29 +1,82 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
- <meta charset="UTF-8">
- <title>Moja Wizytówka</title>
- <link rel="stylesheet" href="style.css">
- <script src="script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HUBERT - MASTER OF CHAOS</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <header><h1>Moja Wizytówka - Portfolio</h1></header>
- <main>
-    <div id="cursor-follower">🚀</div>
-    <h1 class="glitch" data-text="HUBERT - MASTER OF CODE">HUBERT - MASTER OF CODE</h1>
-    
-    <section id="about">
-        <h2>O MNIE</h2>
-        <p>Jestem programistą, który nie boi się tagu &lt;blink&gt; i nadmiaru skryptów!</p>
-    </section>
 
-    <section id="snake-game">
-        <h3>SNAKE RETRO</h3>
-        <canvas id="snakeCanvas" width="300" height="300"></canvas>
-        <p>Użyj strzałek, aby nakarmić węża!</p>
-    </section>
+    <div id="cursor-follower">🚀</div>
+
+    <header>
+        <h1 class="glitch" data-text="HUBERT DESIGN">HUBERT DESIGN</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">O MNIE</a></li>
+                <li><a href="#projects">PROJEKTY</a></li>
+                <li><a href="#snake">GRA SNAKE</a></li>
+                <li><a href="#reviews">OPINIE</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">KONTAKT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h2>PROFIL GENIUSZA</h2>
+            <p>Programuję od dzisiaj, ale czuję, że kody binarne płyną w moich żyłach. Moje projekty są tak szybkie, że procesory proszą o litość.</p>
+        </section>
+
+        <section id="projects">
+            <h2>MOJE DZIEŁA (ZDJĘCIA)</h2>
+            <div class="gallery">
+                <div class="card">🚀 Projekt NASA (Prawie)</div>
+                <div class="card">🔥 Generator Fajerwerków</div>
+                <div class="card">🌈 Symulator Tęczy</div>
+            </div>
+        </section>
+
+        <section id="snake">
+            <h2>REAKTUALIZACJA RETRO: SNAKE</h2>
+            <canvas id="snakeCanvas" width="300" height="300"></canvas>
+            <p>Użyj klawiszy strzałek. Zjedz czerwoną kropkę, unikaj ścian!</p>
+        </section>
+
+        <section id="reviews">
+            <h2>CO MÓWIĄ LUDZIE?</h2>
+            <div class="review-box">
+                <blockquote>"Nigdy nie widziałem tylu kolorów na raz. Moje oczy płaczą ze szczęścia." - Anonimowy UX Designer</blockquote>
+                <blockquote>"Strona działa? Działa. Jest chaos? Jest. 10/10." - Kolega z ławki</blockquote>
+            </div>
+        </section>
+
+        <section id="faq">
+            <h2>FAQ - CZĘSTO ZADAWANE PYTANIA</h2>
+            <details>
+                <summary>Dlaczego ta strona tak mruga?</summary>
+                <p>Bo stabilność jest nudna. Chaos to przyszłość web developmentu.</p>
+            </details>
+            <details>
+                <summary>Jak wyłączyć kursor-rakietę?</summary>
+                <p>Nie da się. Rakietą lecisz prosto do sukcesu.</p>
+            </details>
+        </section>
+
+        <section id="contact">
+            <h2>KONTAKT</h2>
+            <p>Wyślij sygnał dymny lub znajdź mnie na GitHubie: <strong>hubertwaz04-design</strong></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hubert Master of Chaos. Wszystkie kolory zastrzeżone.</p>
+    </footer>
 
     <canvas id="fireworksCanvas"></canvas>
-</main>
+
+    <script src="script.js"></script>
 </body>
 </html>
