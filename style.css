@@ -1,0 +1,51 @@
+body {
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #00ff00);
+    background-size: 400% 400%;
+    animation: gradientBG 5s ease infinite;
+    cursor: none; /* Ukrywamy kursor dla efektu JS */
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#cursor-follower {
+    position: fixed;
+    font-size: 2rem;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+#snakeCanvas {
+    border: 5px dotted lime;
+    background: #000;
+    display: block;
+    margin: 20px auto;
+}
+
+#fireworksCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.glitch {
+    font-size: 5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    position: relative;
+    text-shadow: 0.05em 0 0 rgba(255,0,0,.75), -0.025em -0.05em 0 rgba(0,255,0,.75), 0.025em 0.05em 0 rgba(0,0,255,.75);
+    animation: glitch 500ms infinite;
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
