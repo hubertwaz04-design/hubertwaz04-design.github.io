@@ -3,56 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hubert | Portfolio</title>
+    <title>Hubert | Nowoczesne Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <div id="glow"></div>
+
+    <header id="navbar">
+        <div class="logo">Hubert<span>.dev</span></div>
         <nav>
-            <div class="logo">Hubert<span>.dev</span></div>
             <ul>
+                <li><a href="#hero">Start</a></li>
                 <li><a href="#about">O mnie</a></li>
-                <li><a href="#skills">Umiejętności</a></li>
-                <li><a href="#projects">Projekty</a></li>
-                <li><a href="#snake-section">Lab: Game</a></li>
+                <li><a href="#skills">Stack</a></li>
+                <li><a href="#lab">Lab10 Game</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="hero">
-            <h1>Cześć, jestem Hubert</h1>
-            <p>Student Informatyki | Pasjonat Nowoczesnych Technologii</p>
+        <section id="hero" class="hidden">
+            <h1 id="typewriter"></h1>
+            <p class="subtitle">Tworzę nowoczesne strony i aplikacje webowe.</p>
+            <a href="#lab" class="btn">Zagraj w moją grę</a>
         </section>
 
-        <section id="about">
-            <h2>O mnie</h2>
-            <p>Buduję przejrzyste i funkcjonalne aplikacje webowe. Skupiam się na czystym kodzie i dobrych praktykach programistycznych.</p>
-        </section>
-
-        <section id="skills">
-            <h2>Umiejętności</h2>
-            <div class="skills-grid">
-                <span>HTML5 / CSS3</span>
-                <span>JavaScript (ES6+)</span>
-                <span>Git / GitHub</span>
-                <span>Visual Studio Code</span>
+        <section id="about" class="hidden">
+            <h2>Kim jestem?</h2>
+            <div class="content-box">
+                <p>Jestem studentem z pasją do czystego kodu. Projektuję interfejsy, które nie tylko dobrze wyglądają, ale przede wszystkim płynnie działają. Moim celem jest łączenie estetyki z wydajnością.</p>
             </div>
         </section>
 
-        <section id="snake-section">
-            <h2>Mini-projekt: Prosty Snake</h2>
-            <div class="game-container">
+        <section id="skills" class="hidden">
+            <h2>Technologie</h2>
+            <div class="skills-container">
+                <div class="skill-tag">JavaScript (ES6+)</div>
+                <div class="skill-tag">HTML5 & CSS3</div>
+                <div class="skill-tag">Git & GitHub</div>
+                <div class="skill-tag">UI/UX Design</div>
+            </div>
+        </section>
+
+        <section id="lab" class="hidden">
+            <h2>Projekt: Snake API</h2>
+            <p>Zoptymalizowana wersja klasyka. Kliknij "Rozpocznij", aby zagrać.</p>
+            
+            <div class="game-wrapper">
+                <div id="game-overlay">
+                    <h3>Gotowy?</h3>
+                    <button id="start-btn">Rozpocznij Grę</button>
+                </div>
                 <canvas id="snakeCanvas" width="400" height="400"></canvas>
-                <div id="score">Wynik: 0</div>
-                <button onclick="resetGame()">Restart</button>
+                <div class="game-stats">
+                    <span id="score">Wynik: 0</span>
+                    <span id="high-score">Najlepszy: 0</span>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Hubert. Utworzono w ramach Lab10 NISP.</p>
+        <p>&copy; 2026 Hubert. Wizytówka utworzona w ramach laboratorium Narzędzia i środowiska programistyczne[cite: 1].</p>
     </footer>
 
     <script src="script.js"></script>

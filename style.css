@@ -1,52 +1,109 @@
 :root {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --accent-color: #38bdf8;
-    --card-bg: #1e293b;
+    --bg-main: #09090b;
+    --bg-sec: #18181b;
+    --accent: #06b6d4;
+    --accent-hover: #0891b2;
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+    --font-sans: 'Poppins', sans-serif;
+    --font-mono: 'Fira Code', monospace;
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    margin: 0;
-    line-height: 1.6;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    overflow-x: hidden;
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem 10%;
-    background: rgba(15, 23, 42, 0.9);
-    position: sticky;
-    top: 0;
+/* Efekt latarki pod myszką */
+#glow {
+    position: fixed;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: width 0.2s, height 0.2s;
 }
 
-nav ul { display: flex; list-style: none; gap: 20px; }
-nav a { color: var(--text-color); text-decoration: none; font-weight: 500; }
-nav a:hover { color: var(--accent-color); }
-
-section { padding: 4rem 10%; }
-h2 { border-left: 4px solid var(--accent-color); padding-left: 15px; margin-bottom: 2rem; }
-
-.skills-grid span {
-    background: var(--card-bg);
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin: 5px;
-    display: inline-block;
-    border: 1px solid #334155;
+/* Nawigacja Glassmorphism */
+header {
+    position: fixed; width: 100%; top: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 10%;
+    background: rgba(9, 9, 11, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-.game-container { text-align: center; background: var(--card-bg); padding: 20px; border-radius: 12px; }
-#snakeCanvas { background: #000; border: 2px solid var(--accent-color); max-width: 100%; }
-#score { font-size: 1.5rem; margin: 10px 0; }
+.logo { font-size: 1.5rem; font-weight: 600; letter-spacing: 1px; }
+.logo span { color: var(--accent); }
 
-button {
-    background: var(--accent-color);
-    border: none;
-    padding: 10px 25px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}   
+nav ul { display: flex; list-style: none; gap: 30px; }
+nav a { color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+nav a:hover { color: var(--accent); }
+
+/* Sekcje i animacje pojawiania się */
+section {
+    min-height: 80vh;
+    padding: 120px 10% 60px;
+    display: flex; flex-direction: column; justify-content: center;
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+.show { opacity: 1; transform: translateY(0); }
+
+h1 { font-size: 3.5rem; margin-bottom: 10px; font-family: var(--font-mono); }
+h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent); }
+.subtitle { color: var(--text-muted); font-size: 1.2rem; margin-bottom: 40px; }
+
+.btn {
+    display: inline-block; padding: 12px 30px;
+    background: var(--accent); color: #000;
+    text-decoration: none; border-radius: 5px; font-weight: 600;
+    transition: all 0.3s; border: none; cursor: pointer;
+}
+.btn:hover { background: var(--accent-hover); transform: translateY(-3px); }
+
+/* Tagi umiejętności */
+.skills-container { display: flex; flex-wrap: wrap; gap: 15px; }
+.skill-tag {
+    background: var(--bg-sec); padding: 12px 25px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--font-mono); transition: all 0.3s;
+}
+.skill-tag:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-5px); }
+
+/* Kontener Gry */
+.game-wrapper {
+    position: relative; width: 400px; margin: 0 auto;
+    background: var(--bg-sec); padding: 20px;
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+#game-overlay {
+    position: absolute; top: 20px; left: 20px; right: 20px; bottom: 65px;
+    background: rgba(9, 9, 11, 0.85); backdrop-filter: blur(4px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 10; border-radius: 8px;
+}
+
+#game-overlay h3 { margin-bottom: 20px; font-size: 2rem; color: var(--accent); }
+#start-btn { background: var(--accent); color: #000; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: 600; font-size: 1.1rem; transition: 0.2s; }
+#start-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+#snakeCanvas { background: #000; border-radius: 8px; display: block; }
+.game-stats { display: flex; justify-content: space-between; margin-top: 15px; font-family: var(--font-mono); color: var(--text-muted); }
+
+footer { text-align: center; padding: 30px; background: var(--bg-sec); color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.05); }
