@@ -3,79 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HUBERT - MASTER OF CHAOS</title>
+    <title>Hubert | Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div id="cursor-follower">🚀</div>
-
     <header>
-        <h1 class="glitch" data-text="HUBERT DESIGN">HUBERT DESIGN</h1>
         <nav>
+            <div class="logo">Hubert<span>.dev</span></div>
             <ul>
-                <li><a href="#about">O MNIE</a></li>
-                <li><a href="#projects">PROJEKTY</a></li>
-                <li><a href="#snake">GRA SNAKE</a></li>
-                <li><a href="#reviews">OPINIE</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#contact">KONTAKT</a></li>
+                <li><a href="#about">O mnie</a></li>
+                <li><a href="#skills">Umiejętności</a></li>
+                <li><a href="#projects">Projekty</a></li>
+                <li><a href="#snake-section">Lab: Game</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+        <section id="hero">
+            <h1>Cześć, jestem Hubert</h1>
+            <p>Student Informatyki | Pasjonat Nowoczesnych Technologii</p>
+        </section>
+
         <section id="about">
-            <h2>PROFIL GENIUSZA</h2>
-            <p>Programuję od dzisiaj, ale czuję, że kody binarne płyną w moich żyłach. Moje projekty są tak szybkie, że procesory proszą o litość.</p>
+            <h2>O mnie</h2>
+            <p>Buduję przejrzyste i funkcjonalne aplikacje webowe. Skupiam się na czystym kodzie i dobrych praktykach programistycznych.</p>
         </section>
 
-        <section id="projects">
-            <h2>MOJE DZIEŁA (ZDJĘCIA)</h2>
-            <div class="gallery">
-                <div class="card">🚀 Projekt NASA (Prawie)</div>
-                <div class="card">🔥 Generator Fajerwerków</div>
-                <div class="card">🌈 Symulator Tęczy</div>
+        <section id="skills">
+            <h2>Umiejętności</h2>
+            <div class="skills-grid">
+                <span>HTML5 / CSS3</span>
+                <span>JavaScript (ES6+)</span>
+                <span>Git / GitHub</span>
+                <span>Visual Studio Code</span>
             </div>
         </section>
 
-        <section id="snake">
-            <h2>REAKTUALIZACJA RETRO: SNAKE</h2>
-            <canvas id="snakeCanvas" width="300" height="300"></canvas>
-            <p>Użyj klawiszy strzałek. Zjedz czerwoną kropkę, unikaj ścian!</p>
-        </section>
-
-        <section id="reviews">
-            <h2>CO MÓWIĄ LUDZIE?</h2>
-            <div class="review-box">
-                <blockquote>"Nigdy nie widziałem tylu kolorów na raz. Moje oczy płaczą ze szczęścia." - Anonimowy UX Designer</blockquote>
-                <blockquote>"Strona działa? Działa. Jest chaos? Jest. 10/10." - Kolega z ławki</blockquote>
+        <section id="snake-section">
+            <h2>Mini-projekt: Prosty Snake</h2>
+            <div class="game-container">
+                <canvas id="snakeCanvas" width="400" height="400"></canvas>
+                <div id="score">Wynik: 0</div>
+                <button onclick="resetGame()">Restart</button>
             </div>
-        </section>
-
-        <section id="faq">
-            <h2>FAQ - CZĘSTO ZADAWANE PYTANIA</h2>
-            <details>
-                <summary>Dlaczego ta strona tak mruga?</summary>
-                <p>Bo stabilność jest nudna. Chaos to przyszłość web developmentu.</p>
-            </details>
-            <details>
-                <summary>Jak wyłączyć kursor-rakietę?</summary>
-                <p>Nie da się. Rakietą lecisz prosto do sukcesu.</p>
-            </details>
-        </section>
-
-        <section id="contact">
-            <h2>KONTAKT</h2>
-            <p>Wyślij sygnał dymny lub znajdź mnie na GitHubie: <strong>hubertwaz04-design</strong></p>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2026 Hubert Master of Chaos. Wszystkie kolory zastrzeżone.</p>
+        <p>&copy; 2026 Hubert. Utworzono w ramach Lab10 NISP.</p>
     </footer>
-
-    <canvas id="fireworksCanvas"></canvas>
 
     <script src="script.js"></script>
 </body>

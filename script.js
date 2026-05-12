@@ -1,50 +1,68 @@
-// 1. KOLOROWY KURSOR
-const follower = document.getElementById('cursor-follower');
-document.addEventListener('mousemove', (e) => {
-    follower.style.left = e.pageX + 'px';
-    follower.style.top = e.pageY + 'px';
-});
+const canvas = document.getElementById("snakeCanvas");
+const ctx = canvas.getContext("2d");
+const scoreElement = document.getElementById("score");
 
-// 2. MINI SNAKE
-const canvas = document.getElementById('snakeCanvas');
-const ctx = canvas.getContext('2d');
-let snake = [{x: 10, y: 10}];
-let food = {x: 15, y: 15};
-let dx = 0, dy = 0;
+const box = 20;
+let score = 0;
+let snake = [{ x: 9 * box, y: 10 * box }];
+let food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
+let d = "RIGHT";
 
-document.addEventListener('keydown', (e) => {
-    if(e.key === 'ArrowUp') { dx = 0; dy = -1; }
-    if(e.key === 'ArrowDown') { dx = 0; dy = 1; }
-    if(e.key === 'ArrowLeft') { dx = -1; dy = 0; }
-    if(e.key === 'ArrowRight') { dx = 1; dy = 0; }
-});
+document.addEventListener("keydown", direction);
 
-function drawGame() {
-    let head = {x: snake[0].x + dx, y: snake[0].y + dy};
-    snake.unshift(head);
-    if(head.x === food.x && head.y === food.y) {
-        food = {x: Math.floor(Math.random()*15), y: Math.floor(Math.random()*15)};
-    } else { snake.pop(); }
-    
-    ctx.fillStyle = 'black'; ctx.fillRect(0,0,300,300);
-    ctx.fillStyle = 'lime'; snake.forEach(p => ctx.fillRect(p.x*20, p.y*20, 18, 18));
-    ctx.fillStyle = 'red'; ctx.fillRect(food.x*20, food.y*20, 18, 18);
-    setTimeout(drawGame, 100);
+function direction(event) {
+    if (event.keyCode == 37 && d != "RIGHT") d = "LEFT";
+    else if (event.keyCode == 38 && d != "DOWN") d = "UP";
+    else if (event.keyCode == 39 && d != "LEFT") d = "RIGHT";
+    else if (event.keyCode == 40 && d != "UP") d = "DOWN";
 }
-drawGame();
 
-// 3. FAJERWERKI (Uproszczone)
-const fCanvas = document.getElementById('fireworksCanvas');
-const fCtx = fCanvas.getContext('2d');
-fCanvas.width = window.innerWidth; fCanvas.height = window.innerHeight;
+function draw() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-function createFirework() {
-    fCtx.fillStyle = `hsl(${Math.random()*360}, 100%, 50%)`;
-    fCtx.beginPath();
-    fCtx.arc(Math.random()*fCanvas.width, Math.random()*fCanvas.height, 5, 0, Math.PI*2);
-    fCtx.fill();
+    for (let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = i == 0 ? "#38bdf8" : "white";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+    }
+
+    ctx.fillStyle = "#ef4444";
+    ctx.fillRect(food.x, food.y, box, box);
+
+    let snakeX = snake[0].x;
+    let snakeY = snake[0].y;
+
+    if (d == "LEFT") snakeX -= box;
+    if (d == "UP") snakeY -= box;
+    if (d == "RIGHT") snakeX += box;
+    if (d == "DOWN") snakeY += box;
+
+    if (snakeX == food.x && snakeY == food.y) {
+        score++;
+        scoreElement.innerHTML = "Wynik: " + score;
+        food = { x: Math.floor(Math.random() * 19 + 1) * box, y: Math.floor(Math.random() * 19 + 1) * box };
+    } else {
+        snake.pop();
+    }
+
+    let newHead = { x: snakeX, y: snakeY };
+
+    if (snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
+        clearInterval(game);
+        alert("Koniec gry! Twój wynik: " + score);
+        location.reload();
+    }
+
+    snake.unshift(newHead);
 }
-setInterval(() => {
-    fCtx.clearRect(0,0,fCanvas.width, fCanvas.height);
-    for(let i=0; i<10; i++) createFirework();
-}, 200);
+
+function collision(head, array) {
+    for (let i = 0; i < array.length; i++) {
+        if (head.x == array[i].x && head.y == array[i].y) return true;
+    }
+    return false;
+}
+
+function resetGame() { location.reload(); }
+
+let game = setInterval(draw, 100);
